@@ -1,0 +1,27 @@
+# DCB AP — React Native Expo (frontend)
+
+## Design system (mandatory)
+
+- **Colors:** import `Colors` from `constants/colors.ts` only. Never use raw hex in UI code.
+- **Typography:** `constants/typography.ts` — sizes, weights, line heights; system fonts only.
+- **Spacing / radius / shadows:** `constants/spacing.ts` — `Spacing`, `BorderRadius`, `Shadows`, `ScreenPadding`.
+- **Status tokens:** use `Colors.status.*` for demand/collection status surfaces and text.
+- **Charts:** payment mode colors from `Colors.chart.*`.
+
+## App rules
+
+- **StatusBar:** every screen uses `ScreenWrapper` and/or `AppHeader` so the bar is visible (`AppStatusBar` / Expo status bar rules).
+- **Safe area:** prefer `ScreenWrapper` (SafeAreaView) or explicit safe-area hooks.
+- **Money:** `AmountText` or `formatAmount` / `formatAmountShort` from `utils/formatCurrency.ts` (Indian `₹` formatting).
+- **API:** Axios helpers in `services/api.ts` unwrap `{ success, data }`. Base URL: `process.env.EXPO_PUBLIC_API_URL` + `/api/v1`.
+- **Auth:** Zustand `stores/authStore.ts`; tokens in `services/storage.ts` (SecureStore).
+- **Server state:** TanStack Query with keys from `constants/queryKeys.ts`.
+- **Roles / permissions:** `constants/roles.ts` and `hooks/useRole.ts`.
+
+## Tech
+
+- Expo Router file routes under `app/`.
+- React Native Paper theme aligned with `Colors` in `app/_layout.tsx`.
+- Victory Native XL (`victory-native`) + Skia for charts under `components/charts/`.
+
+When adding UI, extend existing patterns instead of new one-off styling.
